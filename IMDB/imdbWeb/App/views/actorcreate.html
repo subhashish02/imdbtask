@@ -1,5 +1,5 @@
 ﻿<div>
-    <div class="h4">&nbsp;{{modaltitle}}</div>
+    <div class="h4">&nbsp;Add New Actor</div>
 </div>
 <div class="modal-body">
     <div cg-busy="{promise:myPromise,message:'Loading',backdrop:true}">
@@ -7,50 +7,45 @@
                 <form class="form-horizontal" name="myForm">
                     <fieldset>
                         <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.uname.$invalid && !myForm.uname.$pristine }">
-                            <label class="col-lg-2 control-label" for="uname">User Name</label>
+                            <label class="col-lg-2 control-label" for="aname">Actor Name</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="uname" id="uname" ng-model="muserData.uname" placeholder="Username" ng-required="true" ng-disabled="mode=='EDIT'">
-                                <span style="color: red" class="help-block" data-ng-show="myForm.uname.$invalid && !myForm.uname.$pristine">
-                                    <span data-ng-show="myForm.uname.$error.required">This field is required!</span>
+                                <input type="text" class="form-control" name="aname" id="aname" ng-model="actor.actname" placeholder="Actor Name" ng-required="true">
+                                <span style="color: red" class="help-block" data-ng-show="myForm.aname.$invalid && !myForm.aname.$pristine">
+                                    <span data-ng-show="myForm.aname.$error.required">This field is required!</span>
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" for="aname">Name</label>
+                            <label class="col-lg-2 control-label" for="sex">Gender</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="aname" ng-model="muserData.aname" placeholder="Display Name">
+                                <input type="radio" name="sex" value="Male" ng-model="actor.actsex" />Male
+                                <input type="radio" name="sex" value="Female" ng-model="actor.actsex" />Female
                             </div>
                         </div>
-                        <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.mobile.$invalid && !myForm.mobile.$pristine }">
-                            <label class="col-lg-2 control-label" for="mob">Mobile </label>
+                        <div class="form-group">
+                            <lable class="col-lg-2 control-label" for="adob"><b>Date of Birth</b></lable>
                             <div class="col-lg-10">
-                                <input type="text" name="mobile" placeholder="Mobile Number" data-ng-model="muserData.mobile" pattern="^[0-9]+$" maxlength="10" minlength="10" class="form-control" id="mobileno">
-                                <span style="color: red" class="help-block" data-ng-show="myForm.mobile.$invalid && !myForm.mobile.$pristine">
-                                    <span data-ng-show="myForm.mobile.$error.pattern || myForm.mobile.$error.minlength">10 Digits Numbers Only!</span>
+                                <input type="date" class="form-control" name="adob" id="adob" ng-model="actor.actdob" ng-required="true" />
+                                <span style="color: red" class="help-block" data-ng-show="myForm.dob.$invalid && !myForm.dob.$pristine">
+                                    <span data-ng-show="myForm.dob.$error.required">This field is required!</span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.emailid.$invalid && !myForm.emailid.$pristine }">
-                            <label class="col-lg-2 control-label" for="emailid">Email Id</label>
-                            <div class="col-lg-10">
-                                <input type="email" name="emailid" class="form-control" id="emailid" ng-model="muserData.email" placeholder="Email id" />
-                                <span style="color: red" class="help-block" data-ng-show="myForm.emailid.$invalid && !myForm.emailid.$pristine">
-                                    <span data-ng-show="myForm.emailid.$error.email">Input a valid Email Id</span>
-                                </span>
-                            </div>
-                        </div>
 
-                        <div data-ng-show="message.length!=0">
-                            <span class="icon-exclamation-sign" aria-hidden="true"></span>
-                            <span class="sr-only">Error:</span>
-                            {{message}}
                         </div>
-                        </fieldset>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="abio">Biodata</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="abio" id="abio" ng-model="actor.actbio" placeholder="Actor Biodata" ng-required="true">
+                                <span style="color: red" class="help-block" data-ng-show="myForm.abio.$invalid && !myForm.abio.$pristine">
+                                    <span data-ng-show="myForm.abio.$error.required">This field is required!</span>
+                                </span>
+                            </div>
+                        </div>
+                      </fieldset>
 </form>
-        <p class="text-primary">User accounts will remain inactive upon creation. <br/>Please unblock them as required from the mobile user list.</p>
     </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-success" aria-hidden="true" ng-disabled="myForm.$invalid" ng-click="createUser();">Save</button>
+    <button type="button" class="btn btn-success" aria-hidden="true" ng-disabled="myForm.$invalid" ng-click="createactor();">Save</button>
 </div>

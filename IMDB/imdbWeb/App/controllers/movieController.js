@@ -17,17 +17,19 @@ app.controller('movieController', ['$scope', '$rootScope', '$filter', 'localStor
             });
         }
 
-        $scope.deletemovie = function (movid) {
-            $scope.busymsg = "deleting session Please Wait.."
+        $scope.deleteClick = function (movid) {
+            $scope.busymsg = "deleting movie Please Wait.."
             $scope.saveBusy = true;
-            $scope.myPromise = genericService.genericFunction('DELETE', 'movie', {}, movid);
+            $scope.myPromise = genericService.genericFunction('DELETE', 'Movie', {}, movid);
             $scope.myPromise.then(function (result) {
 
-                if (result.bstatus == true) {
+                if (result.status != "error") {
                     $scope.msuccess = true;
-                    $scope.isOpen = false;
                     $scope.msg = "movie deleted successfully.";
-                    $scope.getSessions();
+                    var findex = _.findIndex($scope.movieList, function (obj) { return obj.movid === movid; });
+                    if (findex > -1) {
+                        $scope.movieList.splice(findex, 1);
+                    }
                 }
                 else {
                     $scope.msuccess = false;

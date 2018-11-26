@@ -24,8 +24,7 @@ namespace imdb.Controllers
         // POST: api/Actors
         public BaseResponse Post(Actor value)
         {
-            BaseResponse br = ActorUtility.SaveActor(value);
-            return br;
+            return ActorUtility.SaveActor(value);
         }
 
         // PUT: api/Actors/5

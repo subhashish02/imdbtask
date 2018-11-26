@@ -124,7 +124,7 @@ namespace imdb.Utility
                 scmd.Prepare();
                 scmd.ExecuteNonQuery();
 
-
+                br.lid = scmd.LastInsertedId;
                 br.status = "success";
                 br.message = "created succefully.";
                 

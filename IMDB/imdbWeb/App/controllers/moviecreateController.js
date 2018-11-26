@@ -20,6 +20,38 @@ app.controller('moviecreateController', ['$scope', '$rootScope', '$filter', 'loc
                 $scope.movie.actors.push($scope.selactor);
             }        
         }
+        $scope.addNewActor = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/views/actorcreate.html',
+                controller: 'actorcreateController',
+                size: 'md',
+                resolve: {
+                }
+            });
+            
+            modalInstance.result.then(function (obj) {
+                debugger;
+                if (obj.actid) {
+                    $scope.actors.push(obj);
+                }
+            });
+        }
+
+        $scope.addNewProducer = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'app/views/producercreate.html',
+                controller: 'producercreateController',
+                size: 'md',
+                resolve: {
+                }
+            });
+
+            modalInstance.result.then( function (obj) {
+                if (obj.proid) {
+                    $scope.producers.push(obj);
+                }
+            });
+        }
 
         $scope.removeMovieActor = function (actid) {
             var findex = _.findIndex($scope.movie.actors, function (obj) { return obj.actid === actid; });
@@ -48,6 +80,8 @@ app.controller('moviecreateController', ['$scope', '$rootScope', '$filter', 'loc
             $scope.myPromise.then(function (results) {
                 debugger;
                 $scope.actors = results;
+                $scope.actors.splice(0, { actid: -1, actname:'Select' });
+                $scope.selactor = $scope.actors[0]; 
                 $scope.saveBusy = false;
                 $scope.GetProduces();
             });
@@ -59,6 +93,8 @@ app.controller('moviecreateController', ['$scope', '$rootScope', '$filter', 'loc
             $scope.myPromise = genericService.genericFunction('GET', 'Producer', {}, 0);
             $scope.myPromise.then(function (results) {
                 $scope.producers = results;
+                $scope.producers.splice(0, { proid: -1, proname: 'Select' });
+                $scope.movie.producer = $scope.producers[0]; 
                 $scope.saveBusy = false;
             });
         }

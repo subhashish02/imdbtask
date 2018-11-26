@@ -1,5 +1,5 @@
 'use strict';
-app.controller('actorController', ['$scope', '$rootScope', '$filter',  'localStorageService', '$location', '$uibModal', '$routeParams',  function ($scope, $rootScope, $filter,  localStorageService, $location, $uibModal, $routeParams) {
+app.controller('actorController', ['$scope', '$rootScope', '$filter', 'localStorageService', '$location', '$uibModal', '$routeParams', 'genericService', function ($scope, $rootScope, $filter, localStorageService, $location, $uibModal, $routeParams, genericService) {
     debugger;
     $rootScope.mode = '';
     $scope.reverseSort = false;

@@ -114,7 +114,7 @@ namespace imdb.Utility
             scmd.Transaction = t;
             try
             {
-                scmd.CommandText = "INSERT INTO actors( , actname, actsex, actdob, actbio) VALUES( @, @actname, @actsex, @actdob, @actbio);";
+                scmd.CommandText = "INSERT INTO actors( actname, actsex, actdob, actbio) VALUES( @actname, @actsex, @actdob, @actbio);";
                 scmd.Parameters.AddWithValue("actname", value.actname);
                 scmd.Parameters.AddWithValue("actsex", value.actsex);
                 scmd.Parameters.AddWithValue("actdob", value.actdob);
@@ -123,7 +123,7 @@ namespace imdb.Utility
                 scmd.Prepare();
                 scmd.ExecuteNonQuery();
 
-
+                br.lid = scmd.LastInsertedId;
                 br.status = "success";
                 br.message = "created succefully.";
                 

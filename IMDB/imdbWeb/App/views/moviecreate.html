@@ -7,7 +7,7 @@
 
 <ol class="breadcrumb">
     <li class="breadcrumb-item">
-        <a>Movies</a>
+        <a href="#movies">Movies</a>
     </li>
     <li class="breadcrumb-item active">{{modaltitle}}</li>
 
@@ -52,7 +52,7 @@
                             <label for="moviposter">Poster</label>
                             <input type="file" onchange="angular.element(this).scope().onFileChange(this)" id="moviposter" name="moviposter"
                                    placeholder="file upload"
-                                   accept=".jpeg" style="display: none;">
+                                   accept=".jpg" style="display: none;">
                             <button class="btn btn-primary btn-sm" onclick="document.getElementById('moviposter').click();">Select File</button>
                             <img ng-src="{{movie.posterImg}}" ng-if="movie.posterImg" style="width:100px;height:100px;" />
                             <img ng-src="{{movie.moviposter}}" ng-if="movie.moviposter" style="width:100px;height:100px;" />
@@ -76,7 +76,7 @@
                                     <span class="text-danger">*this field is required.</span>
                                 </div>
                             </div>
-                            <button class="btn btn-success btn-xs" ng-click="addNewActor()">Add New Produces</button>
+                            <button class="btn btn-success btn-xs" ng-click="addNewProducer()">Add New Produces</button>
                         </div>
                     </div>
                 </form>

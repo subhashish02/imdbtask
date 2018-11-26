@@ -24,8 +24,7 @@ namespace imdb.Controllers
         // POST: api/Producers
         public BaseResponse Post(Producer value)
         {
-            BaseResponse br = ProducerUtility.SaveProducer(value);
-            return br;
+            return ProducerUtility.SaveProducer(value);
         }
 
         // PUT: api/Producers/5

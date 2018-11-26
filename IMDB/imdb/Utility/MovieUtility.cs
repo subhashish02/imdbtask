@@ -295,7 +295,7 @@ namespace imdb.Utility
             br.status = "error";
             try
             {
-                scmd.CommandText = "DELETE FROM movies WHERE movid=@id";
+                scmd.CommandText = "DELETE FROM movies WHERE movid=@movid";
 				scmd.Parameters.AddWithValue("movid", id);
                 scmd.ExecuteNonQuery();
                 br.status = "success";
