@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <h4 class="sub-header">Reporting producers <span title="First 5 mobile producer accounts remain free always." class="label label-success" style="font-size:small" ng-show="numfree>-1">Free producers: {{numfree}}</span>&nbsp;<span style="font-size:small" class="label label-primary" ng-show="numpaid>-1">billable producers: {{numpaid}}</span></h4>
+    </div>
+    <div class="row" cg-busy="{promise:myPromise,message:'Loading producers list. Please wait..',backdrop:true}">
+        <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-inline" style="margin-left:10px;">
+                                <label class="text-muted" for="s1">List Filter:&nbsp;</label>
+                                <input type="text" class="search-field form-control" placeholder="Search" data-ng-model="filterData">
+                                </div>
+                            </div>
+                        <div class="col-sm-6">
+                            <button title="Create a new reporting producer." type="button" class="btn btn-success pull-right" data-ng-click="createClick('NEW','');"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+
+                            
+
+                        </div>
+                    <div>
+                        <div ng-show="numfree>-1 && producerList.length<=0" style="text-align: center" cg-busy="{promise:myPromise,message:'getting producer list.  Please wait..',backdrop:true}">
+                            <h3>
+                                No Mobile producer Found, Add New Mobile producer.
+                                <button class="btn btn-mini btn-success" ng-click="createClick('NEW','');"><i class="fa fa-plus"></i>Add New Mobile producer</button>
+                            </h3>
+                        </div>
+                        <div ng-show="producerList.length>0" style="font-size: small">
+                            <table id="data-table-command" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>proid</th>
+                                        <th>proname</th>
+                                        <th>prosex</th>
+                                        <th>prodob</th>
+                                        <th>probio</th>
+
+                                        <th>Status</th>
+                                        <th>Mode</th>
+                                        <th>.</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="u in tableData =(producerList | orderBy:orderbyfunction:reverseSort | filter: filterData)">
+                                        <td>{{u.proid}}</td>
+                                        <td>{{u.proname}}</td>
+                                        <td>{{u.prosex}}</td>
+                                        <td>{{u.prodob}}</td>
+                                        <td>{{u.probio}}</td>
+
+                                        <td>
+
+                                            <button type="button" ng-class="{'btn btn-xs btn-success':u.active, 'btn btn-xs btn-warning': !u.active}" title="{{u.active?'Block this producer':'Activate this producer'}}"><i ng-class="{'fa fa-stop':!u.active, 'fa fa-play': u.active}" data-ng-click="toggleActive(u);"></i></button>
+                                            {{u.active?"Active":"Blocked"}}
+
+</td>
+                                            <td><img ng-show="!u.ispaid" ng-src="img/free.gif" height="15px" /></td>
+                                        <td>
+                                            <i ng-class="u.genkey? 'fa fa-key text-white':'fa fa-check text-success'" title="{{u.genkey?'Connect Key:'+u.genkey:'* key used'}}"></i>
+                                           <i class="fa fa-producer-secret" title="Password : {{u.pword}}"></i>
+
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-xs" data-ng-click="createClick('EDIT',u)" title="Edit"><i class="fa fa-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+    </div>
+</div>
+</div>

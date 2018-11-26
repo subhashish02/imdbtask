@@ -1,0 +1,102 @@
+﻿<style>
+    .fa-svg-icon svg {
+        width: 15px;
+        height: 15px;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a>Movies</a>
+    </li>
+    <li class="breadcrumb-item active">{{modaltitle}}</li>
+
+</ol>
+<div class="card card-default">
+    <div class="card-header">
+        <h4 ng-show="movid>0">Update : {{movie.moviname | uppercase }}</h4><!--update mode-->
+        <h4 ng-show="mode==-1">Add New Movie</h4><!--add mode-->
+    </div>
+    <!-- /.panel-heading -->
+    <div class="card-body" cg-busy="{promise:promises,message:busymsg,backdrop:true}">
+                <form name="step1" class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="moviname">Movie Name</label>
+                            <input name="moviname" id="moviname" ng-model="movie.moviname" class="form-control" required />
+                            <div ng-messages="step1.moviname.$error" style="color:red" role="alert">
+                                <div ng-message="required">
+                                    <span class="text-danger">*this field is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="movirelyear">Release Year</label>
+                            <input name="movirelyear" id="movirelyear" ng-model="movie.movirelyear" class="form-control" required />
+                            <div ng-messages="step1.movirelyear.$error" style="color:red" role="alert">
+                                <div ng-message="required">
+                                    <span class="text-danger">*this field is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="moviplot">Plot</label>
+                            <input name="moviplot" id="moviplot" ng-model="movie.moviplot" class="form-control" required />
+                            <div ng-messages="step1.moviplot.$error" style="color:red" role="alert">
+                                <div ng-message="required">
+                                    <span class="text-danger">*this field is required.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="moviposter">Poster</label>
+                            <input type="file" onchange="angular.element(this).scope().onFileChange(this)" id="moviposter" name="moviposter"
+                                   placeholder="file upload"
+                                   accept=".jpeg" style="display: none;">
+                            <button class="btn btn-primary btn-sm" onclick="document.getElementById('moviposter').click();">Select File</button>
+                            <img ng-src="{{movie.posterImg}}" ng-if="movie.posterImg" style="width:100px;height:100px;" />
+                            <img ng-src="{{movie.moviposter}}" ng-if="movie.moviposter" style="width:100px;height:100px;" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row"><span ng-repeat="a in movie.actors">{{a.actname}}<button class="btn btn-danger btn-xs" title="remove" ng-click="removeMovieActor(a.actid)">X</button><span ng-if="!$last">,</span></span></div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="moviplot">Movie Actors</label>
+                                <select ng-options="actor as actor.actname for actor in actors" ng-model="selactor"></select>
+                                <button class="btn btn-success btn-xs" ng-click="addMovieActor()">Add Movie Actors</button>
+                                <button class="btn btn-success btn-xs" ng-click="addNewActor()">Add New Actor</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="prod">Producer</label>
+                            <select name="prod" id="prod" ng-options="prod as prod.proname for prod in producers" ng-model="movie.producer" required></select>
+                            <div ng-messages="step1.prod.$error" style="color:red" role="alert">
+                                <div ng-message="required">
+                                    <span class="text-danger">*this field is required.</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-xs" ng-click="addNewActor()">Add New Produces</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row pull-right" style="margin-right:10px;">
+                    <button class="btn btn-success btnNext" ng-click="savemovie();" ng-disabled="step1.$invalid">Save</button>&nbsp;
+                    <button class="btn btn-danger" ng-click="cancel();">CANCEL</button>
+                </div>
+    </div>
+    <div class="card card-footer">
+        <div data-ng-if="msg.length!=0">
+            <div class="alert alert-danger" role="alert" ng-show="msuccess==false">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{msg}}
+            </div>
+            <div class="alert alert-success" role="alert" ng-show="msuccess==true">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                {{msg}}
+            </div>
+        </div>
+    </div>
+</div>
+
+

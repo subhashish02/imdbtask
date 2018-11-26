@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <h4 class="sub-header">Movies <span title="First 5 mobile movie accounts remain free always." class="label label-success" style="font-size:small" ng-show="numfree>-1">Free movies: {{numfree}}</span>&nbsp;<span style="font-size:small" class="label label-primary" ng-show="numpaid>-1">billable movies: {{numpaid}}</span></h4>
+    </div>
+    <div class="row" cg-busy="{promise:myPromise,message:'Loading movies list. Please wait..',backdrop:true}">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group form-inline" style="margin-left:10px;">
+                        <label class="text-muted" for="s1">List Filter:&nbsp;</label>
+                        <input type="text" class="search-field form-control" placeholder="Search" data-ng-model="filterData">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <button title="Create a new reporting movie." type="button" class="btn btn-success pull-right" data-ng-click="createClick('NEW','');"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div>
+                <div ng-show="movieList.length<=0" style="text-align: center">
+                    <h3>
+                        No movie Found, Add New movie.
+                        <button class="btn btn-mini btn-success" ng-click="createClick('NEW','');"><i class="fa fa-plus"></i>Add New movie</button>
+                    </h3>
+                </div>
+                <div ng-show="movieList.length>0" style="font-size: small">
+                    <table id="data-table-command" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>moviname</th>
+                                <th>movirelyear</th>
+                                <th>moviplot</th>
+                                <th>moviposter</th>
+                                <th>Actors</th>
+                                <th>Producer</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="u in tableData =(movieList | orderBy:orderbyfunction:reverseSort | filter: filterData)">
+                                <td>{{$index+1}}</td>
+                                <td>{{u.moviname}}</td>
+                                <td>{{u.movirelyear}}</td>
+                                <td>{{u.moviplot}}</td>
+                                <td><img ng-src="{{u.moviposter}}"  style="width:100px;height:100px;" /></td>
+                                <td><span ng-repeat="a in u.actors">{{a.actname}}<span ng-if="!$last">,</span></span></td>
+                                <td>{{u.producer.proname}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-xs" data-ng-click="createClick('EDIT',u)" title="Edit"><i class="fa fa-pencil"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

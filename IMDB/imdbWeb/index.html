@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="techtutor">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>IMDB</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="Script/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="Script/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="Script/css/angular-busy.min.css" rel="stylesheet" />
+    <link href="Script/css/loading-bar.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="Script/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="Script/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+
+<body data-ng-controller="indexController">
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+
+            <a href="index.html" class="">
+                <img src="tdclogo.jpg" />
+                <span class="text-primary h4" style="vertical-align:bottom;margin:0px">&nbsp;Tutorials</span>
+            </a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div>
+            </div>
+        </nav>
+
+    </div>
+    <div class="container-fluid" ng-view=""></div>
+    <!-- jQuery -->
+    <script src="Script/js/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="Script/js/moment.js"></script>
+    <script src="Script/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="Script/metisMenu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="Script/js/sb-admin-2.js"></script>
+    <script src="Script/js/jquery.particleground.min.js"></script>
+
+
+    <!-- 3rd party libraries -->
+    <script src="Script/js/angular.min.js"></script>
+    <script src="Script/js/angular-messages.min.js"></script>
+    <script type="text/javascript" src="Script/js/angular-route.min.js"></script>
+    <script src="Script/js/angular-animate.min.js"></script>
+    <script src="Script/js/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="Script/js/angular-busy.min.js"></script>
+    <script src="Script/js/angular-local-storage.js"></script>
+    <script src="Script/js/loading-bar.js"></script>
+    <script src="Script/js/lodash.min.js"></script>
+    <!--<script src="js/jquery.signalR-2.2.1.min.js"></script>-->
+    <!-- Load app main script -->
+    <script src="App.js"></script>
+    <script src="App/services/genericService.js"></script>
+    <script src="App/controllers/indexController.js"></script>
+    <script src="App/controllers/actorController.js"></script>
+    <script src="App/controllers/actorcreateController.js"></script>
+    <script src="App/controllers/moviecreateController.js"></script>
+    <script src="App/controllers/movieController.js"></script>
+    <script src="App/controllers/producerController.js"></script>
+    <script src="App/controllers/producercreateController.js"></script>
+
+</body>
+
+</html>

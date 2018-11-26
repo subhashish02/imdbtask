@@ -1,0 +1,56 @@
+﻿<div>
+    <div class="h4">&nbsp;{{modaltitle}}</div>
+</div>
+<div class="modal-body">
+    <div cg-busy="{promise:myPromise,message:'Loading',backdrop:true}">
+
+                <form class="form-horizontal" name="myForm">
+                    <fieldset>
+                        <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.uname.$invalid && !myForm.uname.$pristine }">
+                            <label class="col-lg-2 control-label" for="uname">User Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="uname" id="uname" ng-model="muserData.uname" placeholder="Username" ng-required="true" ng-disabled="mode=='EDIT'">
+                                <span style="color: red" class="help-block" data-ng-show="myForm.uname.$invalid && !myForm.uname.$pristine">
+                                    <span data-ng-show="myForm.uname.$error.required">This field is required!</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" for="aname">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="aname" ng-model="muserData.aname" placeholder="Display Name">
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.mobile.$invalid && !myForm.mobile.$pristine }">
+                            <label class="col-lg-2 control-label" for="mob">Mobile </label>
+                            <div class="col-lg-10">
+                                <input type="text" name="mobile" placeholder="Mobile Number" data-ng-model="muserData.mobile" pattern="^[0-9]+$" maxlength="10" minlength="10" class="form-control" id="mobileno">
+                                <span style="color: red" class="help-block" data-ng-show="myForm.mobile.$invalid && !myForm.mobile.$pristine">
+                                    <span data-ng-show="myForm.mobile.$error.pattern || myForm.mobile.$error.minlength">10 Digits Numbers Only!</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback" ng-class="{ 'has-error' : myForm.emailid.$invalid && !myForm.emailid.$pristine }">
+                            <label class="col-lg-2 control-label" for="emailid">Email Id</label>
+                            <div class="col-lg-10">
+                                <input type="email" name="emailid" class="form-control" id="emailid" ng-model="muserData.email" placeholder="Email id" />
+                                <span style="color: red" class="help-block" data-ng-show="myForm.emailid.$invalid && !myForm.emailid.$pristine">
+                                    <span data-ng-show="myForm.emailid.$error.email">Input a valid Email Id</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div data-ng-show="message.length!=0">
+                            <span class="icon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            {{message}}
+                        </div>
+                        </fieldset>
+</form>
+        <p class="text-primary">User accounts will remain inactive upon creation. <br/>Please unblock them as required from the mobile user list.</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-success" aria-hidden="true" ng-disabled="myForm.$invalid" ng-click="createUser();">Save</button>
+</div>

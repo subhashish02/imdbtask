@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <h4 class="sub-header">Reporting actors <span title="First 5 mobile actor accounts remain free always." class="label label-success" style="font-size:small" ng-show="numfree>-1">Free actors: {{numfree}}</span>&nbsp;<span style="font-size:small" class="label label-primary" ng-show="numpaid>-1">billable actors: {{numpaid}}</span></h4>
+    </div>
+    <div class="row" cg-busy="{promise:myPromise,message:'Loading actors list. Please wait..',backdrop:true}">
+        <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group form-inline" style="margin-left:10px;">
+                                <label class="text-muted" for="s1">List Filter:&nbsp;</label>
+                                <input type="text" class="search-field form-control" placeholder="Search" data-ng-model="filterData">
+                                </div>
+                            </div>
+                        <div class="col-sm-6">
+                            <button title="Create a new reporting actor." type="button" class="btn btn-success pull-right" data-ng-click="createClick('NEW','');"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+
+                            
+
+                        </div>
+                    <div>
+                        <div ng-show="numfree>-1 && actorList.length<=0" style="text-align: center" cg-busy="{promise:myPromise,message:'getting actor list.  Please wait..',backdrop:true}">
+                            <h3>
+                                No Mobile actor Found, Add New Mobile actor.
+                                <button class="btn btn-mini btn-success" ng-click="createClick('NEW','');"><i class="fa fa-plus"></i>Add New Mobile actor</button>
+                            </h3>
+                        </div>
+                        <div ng-show="actorList.length>0" style="font-size: small">
+                            <table id="data-table-command" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>actid</th>
+                                        <th>actname</th>
+                                        <th>actsex</th>
+                                        <th>actdob</th>
+                                        <th>actbio</th>
+
+                                        <th>Status</th>
+                                        <th>Mode</th>
+                                        <th>.</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="u in tableData =(actorList | orderBy:orderbyfunction:reverseSort | filter: filterData)">
+                                        <td>{{u.actid}}</td>
+                                        <td>{{u.actname}}</td>
+                                        <td>{{u.actsex}}</td>
+                                        <td>{{u.actdob}}</td>
+                                        <td>{{u.actbio}}</td>
+
+                                        <td>
+
+                                            <button type="button" ng-class="{'btn btn-xs btn-success':u.active, 'btn btn-xs btn-warning': !u.active}" title="{{u.active?'Block this actor':'Activate this actor'}}"><i ng-class="{'fa fa-stop':!u.active, 'fa fa-play': u.active}" data-ng-click="toggleActive(u);"></i></button>
+                                            {{u.active?"Active":"Blocked"}}
+
+</td>
+                                            <td><img ng-show="!u.ispaid" ng-src="img/free.gif" height="15px" /></td>
+                                        <td>
+                                            <i ng-class="u.genkey? 'fa fa-key text-white':'fa fa-check text-success'" title="{{u.genkey?'Connect Key:'+u.genkey:'* key used'}}"></i>
+                                           <i class="fa fa-actor-secret" title="Password : {{u.pword}}"></i>
+
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning btn-xs" data-ng-click="createClick('EDIT',u)" title="Edit"><i class="fa fa-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+    </div>
+</div>
+</div>
